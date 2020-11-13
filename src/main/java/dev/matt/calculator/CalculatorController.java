@@ -151,7 +151,7 @@ public class CalculatorController {
 
 	private void expHandlerForNum(String value) {
 		//se expression è vuota o una stringa non vuota ("Calculator by..")
-		if (firstAccess || (expression.getText().equals(""))) {
+		if (firstAccess || (expression.getText().isEmpty())) {
 			expression.setText(value);
 			result.setText("");
 			this.firstAccess = false;
@@ -166,7 +166,7 @@ public class CalculatorController {
 	private void expHandlerForOps(String value) {
 		String temp = expression.getText();
 
-		if (firstAccess || (expression.getText().equals(""))) {
+		if (firstAccess || (expression.getText().isEmpty())) {
 			if (value.equals("+") || value.equals("-")) {
 				expression.setText(value);
 				result.setText("");
