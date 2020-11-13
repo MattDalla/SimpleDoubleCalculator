@@ -23,7 +23,7 @@ public class CalculatorController {
 	private void equalSign(final ActionEvent event) {
 		//TODO
 		//SOLVE CALLEE OPERATES
-		if (!(expression.getText().equals(""))) {
+		if (!(expression.getText().isEmpty())) {
 			expression.setText("");
 			result.setText("");
 		}
@@ -53,7 +53,7 @@ public class CalculatorController {
 	private void dot(final ActionEvent event) {
 		Character value = '.';
 		String tempString = expression.getText();
-		if (firstAccess || (expression.getText().equals(""))) {
+		if (firstAccess || (expression.getText().isEmpty())) {
 			expression.setText("0.");
 			result.setText("");
 			this.firstAccess = false;
