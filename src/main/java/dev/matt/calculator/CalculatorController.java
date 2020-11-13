@@ -3,9 +3,7 @@ package dev.matt.calculator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-
 import org.apache.commons.lang3.StringUtils;
-
 import java.util.*;
 
 
@@ -137,16 +135,14 @@ public class CalculatorController {
 	}
 	@FXML
 	private void del(final ActionEvent event) throws NoSuchElementException {
-		try{
-			if (!(expression.getText().equals(""))) {
-				expression.setText(StringUtils.chop(expression.getText()));
-				result.setText("");
-				this.expStack.removeLast();
-			}
-		} catch (NoSuchElementException e) {
-			this.expStack.clear();
+		if (!(expression.getText().equals(""))) {
+			expression.setText(StringUtils.chop(expression.getText()));
+			result.setText("");
+			this.expStack.pollLast();
 		}
 	}
+
+
 
 	@FXML
 	private void mabout(final ActionEvent event) {
