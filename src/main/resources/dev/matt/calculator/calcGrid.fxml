@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="220.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.matt.calculator.CalculatorController">
+   <children>
+      <VBox prefHeight="200.0" prefWidth="220.0" spacing="10.0" style="-fx-background-color: #FFFAFA;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <MenuBar fx:id="menu">
+              <menus>
+                <Menu fx:id="mhelp" mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem fx:id="mabout" mnemonicParsing="false" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+            <StackPane prefHeight="100.0" prefWidth="200.0">
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin>
+               <children>
+                  <VBox fx:id="display" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: black; -fx-background-color: #F0F8FF;">
+                     <children>
+                        <Label fx:id="expression" alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="200.0" text="Calculator by Teoz.Da v0.0.1" textAlignment="RIGHT">
+                           <VBox.margin>
+                              <Insets left="5.0" right="5.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="result" alignment="CENTER_RIGHT" prefHeight="67.0" prefWidth="200.0" text="Hello!" textAlignment="RIGHT">
+                           <VBox.margin>
+                              <Insets left="5.0" right="5.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </StackPane>
+            <HBox alignment="CENTER_LEFT" prefWidth="200.0" spacing="10.0">
+               <children>
+                  <Button fx:id="add" mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0" text="+" onAction="#add" />
+                  <Button fx:id="min" mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0" text="-" onAction="#min" />
+                  <Button fx:id="mul" mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0" text="x" onAction="#mul" />
+                  <Button fx:id="div" mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0" text="÷" onAction="#div" />
+               </children>
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefWidth="200.0" spacing="10.0">
+               <children>
+                  <Button fx:id="sev" mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0" text="7" onAction="#sev" />
+                  <Button fx:id="eig" mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0" text="8" onAction="#eig" />
+                  <Button fx:id="nin" mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0" text="9" onAction="#nin" />
+                  <Button fx:id="percentage" mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0" text="\%" onAction="#percent" />
+               </children>
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefWidth="200.0" spacing="10.0">
+               <children>
+                  <Button fx:id="fou" mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0" text="4" onAction="#fou" />
+                  <Button fx:id="fiv" mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0" text="5" onAction="#fiv" />
+                  <Button fx:id="six" mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0" text="6" onAction="#six" />
+                  <Button fx:id="del" mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0" text="CE" onAction="#del" />
+               </children>
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="309.0" prefWidth="200.0" spacing="10.0">
+               <children>
+                  <VBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="140.0" spacing="10.0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <children>
+                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                           <children>
+                              <Button fx:id="one" mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0" text="1" onAction="#one" />
+                              <Button fx:id="two" mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0" text="2" onAction="#two" />
+                              <Button fx:id="thr" mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0" text="3" onAction="#thr" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                           <children>
+                              <Button fx:id="zero" mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0" text="0" onAction="#zero" />
+                              <Button fx:id="dot" mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0" text="," onAction="#dot" />
+                              <Button fx:id="reset" mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0" text="C" textFill="RED" onAction="#reset" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <Button fx:id="equal" mnemonicParsing="false" prefHeight="70.0" prefWidth="40.0" text="=" textFill="#00c914" onAction="#equalSign" />
+               </children>
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
