@@ -20,6 +20,10 @@ enum Operator {
         return this.value.toString();
     }
 
+    public Character getValue(){
+        return this.value;
+    }
+
     public static boolean isOperator(String s) { //funzione totale
         switch (s) {
             case "+":
@@ -41,24 +45,18 @@ enum Operator {
                 return MINUS;
             case "÷":
                 return DIV;
+            case "x":
+                return MULT;
+            case "%":
+                return PERCENT;
             default:
                 throw new RuntimeException("invalid operator");
         }
     }
 
-    public static String toString(Operator op){
-        switch (op){
-            case PLUS:
-                return "+";
-            case MINUS:
-                return "-";
-            case MULT:
-                return "x";
-            case DIV:
-                return "÷";
-            case PERCENT:
-                return "%";
-        }
+
+    public static int getPriority(Operator op){
+        return op.priority;
     }
 
 //    public boolean isPlus(Operator o) {
