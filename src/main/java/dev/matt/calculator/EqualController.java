@@ -2,11 +2,11 @@ package dev.matt.calculator;
 
 import java.util.Deque;
 
-public class OperationController {
+public class EqualController {
 	
 	private Deque<Character> actualResult;
 	
-	public OperationController(Deque<Character> actual) {
+	public EqualController(Deque<Character> actual) {
 		this.actualResult = actual;
 	}
 
