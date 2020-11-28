@@ -17,7 +17,7 @@ public class CalculatorController {
     private Deque<Character> expStack = new ArrayDeque<>();
     private Brackets brackets = new Brackets();
     private boolean dotClicked = false;
-//	String collect = lista.stream().collect(Collectors.joining());
+
 
     @FXML
     Label result;
@@ -151,13 +151,6 @@ public class CalculatorController {
         }
     }
 
-
-//        Map<Operator, Function<String, String>> m = new HashMap<>();
-//        m.put(plus, s -> s+1);
-//        m.put(minus, s -> s+2);
-//        m.put(mult, s -> s+3);
-//        m.put(div, s -> s+4);
-//        String ciao = m.get(value).apply("ciao");
 
     private void bracketsHandler() {
         String temp = expression.getText();
