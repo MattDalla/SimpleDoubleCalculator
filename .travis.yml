@@ -4,8 +4,7 @@ jdk: "-openjdk11"
 addons:
   sonarcloud:
     organization: "mattdalla"
-    token:
-      secure: "travis encrypt f368d0a99b54db86396d51e239f0ceb2034195c1" # encrypted value of your token
+    token: "f368d0a99b54db86396d51e239f0ceb2034195c1"
 
 script:
   # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
