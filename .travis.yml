@@ -3,7 +3,7 @@ jdk: "-openjdk11"
 
 addons:
   sonarcloud: 
-      organization: mattdalla
+      organization: "mattdalla"
       token:
         secure: 485925e8756f9f6869e2cb65612ed37931656d85
       
