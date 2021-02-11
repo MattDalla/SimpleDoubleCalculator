@@ -103,7 +103,7 @@ public class EqualController {
 
 		// Top of 'values' contains
 		// result, return it
-		return values.pop().doubleValue();
+		return values.pop();
 	}
 
 	// Returns true if 'op2' has higher
@@ -121,8 +121,7 @@ public class EqualController {
 	// A utility method to apply an
 	// operator 'op' on operands 'a'
 	// and 'b'. Return the result.
-	public static Double applyOp(char op,
-							  Double b, Double a)
+	public static Double applyOp(char op, Double b, Double a)
 	{
 		switch (op)
 		{
