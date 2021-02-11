@@ -2,11 +2,11 @@ language: java
 jdk: "-openjdk11"
 
 addons:
-  sonarcloud: 
-      organization: "mattdalla"
-      token:
-        secure: 485925e8756f9f6869e2cb65612ed37931656d85
-      
-script: 
-  - mvn test -B
-  - sonar-scanner
+  sonarcloud:
+    organization: "mattdalla"
+    token:
+      secure: "951a7d8f474eb3d42360f48da46e3fdf2758526" # encrypted value of your token
+
+script:
+  # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
