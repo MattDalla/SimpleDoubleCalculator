@@ -1,3 +1,11 @@
 language: java
 jdk: "-openjdk11"
-script: mvn test -B
+
+addons:
+  sonarcloud: 
+      organization: mattdalla
+      token: 485925e8756f9f6869e2cb65612ed37931656d85
+      
+script: 
+  - mvn test -B
+  - sonar-scanner
