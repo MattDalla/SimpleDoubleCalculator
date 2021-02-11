@@ -4,9 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import org.apache.commons.lang3.StringUtils;
-
 import java.util.*;
-
 import static dev.matt.calculator.Number.*;
 import static dev.matt.calculator.Operator.*;
 
@@ -14,9 +12,10 @@ import static dev.matt.calculator.Operator.*;
 public class CalculatorController {
 
     private boolean firstAccess = true;
-    private Deque<Character> expStack = new ArrayDeque<>();
-    private Brackets brackets = new Brackets();
+    private final Deque<Character> expStack = new ArrayDeque<>();
+    private final Brackets brackets = new Brackets();
     private boolean dotClicked = false;
+    private static final String WELCOME_TEXT = "Calculator by dev.mattdalla v0.0.1";
 
 
     @FXML
@@ -26,10 +25,13 @@ public class CalculatorController {
 
     @FXML
     private void equalSym(final ActionEvent event) {
-        //TODO
-        //SOLVE CALLEE OPERATES
-        if (!(expression.getText().isEmpty())) {
-            result.setText("");
+        if (!(isFirstOrEmpty() || expression.getText().equals(WELCOME_TEXT))) {
+            while(brackets.getOpened() > 0) {
+                expression.setText(expression.getText().concat(")"));
+                expStack.addLast(')');
+                brackets.decreaseOpened();
+            }
+            result.setText(EqualController.evaluate(String.valueOf(expStack)).toString());
         }
     }
 
@@ -54,7 +56,7 @@ public class CalculatorController {
     }
 
     @FXML
-    private void percentage(final ActionEvent event) { plusMinusHandler(PERCENT); }
+    private void percentage(final ActionEvent event) { multDivPercentHandler(PERCENT); }
 
     @FXML
     private void dot(final ActionEvent event) { dotHandler(); }
@@ -110,7 +112,7 @@ public class CalculatorController {
 
     @FXML
     private void reset(final ActionEvent event) {
-        expression.setText("Calculator by mattdalla v0.0.1");
+        expression.setText(WELCOME_TEXT);
 
         result.setText("");
         this.firstAccess = true;
@@ -121,13 +123,19 @@ public class CalculatorController {
 
     @FXML
     private void del(final ActionEvent event) {
-        Character dotChecker = this.expStack.peekLast();
+        Character checkLast = this.expStack.peekLast();
+        if(expression.getText().equals(WELCOME_TEXT)) return;
+
         if (!(expression.getText().equals(""))) {
             expression.setText(StringUtils.chop(expression.getText()));
             result.setText("");
             this.expStack.pollLast();
-            if (dotChecker != null && dotChecker.equals('.')){
+            if (checkLast != null && checkLast.equals('.')){
                 this.dotClicked = false;
+            }else if (checkLast != null && checkLast.equals(')')){
+                brackets.increaseOpened();
+            }else if (checkLast != null && checkLast.equals('(')){
+                brackets.decreaseOpened();
             }
         }
     }
@@ -137,17 +145,25 @@ public class CalculatorController {
         //TODO
     }
 
-    private void expHandlerForNum(Number value) {
+    private void expHandlerForNum(Number number) {
         //se expression è vuota o una stringa non vuota ("Calculator by..")
         if (isFirstOrEmpty()) {
-            expression.setText(value.getText());
+            expression.setText(number.getText());
             result.setText("");
             this.firstAccess = false;
-            this.expStack.add(value.getValue());
+            this.expStack.add(number.getValue());
         } else {
             String temp = expression.getText();
-            expression.setText(temp.concat(value.getText()));
-            this.expStack.add(value.getValue());
+            Character lastChar = this.expStack.getLast();
+            if (lastChar.equals(')')){
+                String pivot = "x" + number.getText();
+                expression.setText(temp.concat(pivot));
+                this.expStack.addLast('*');
+                this.expStack.addLast(number.getValue());
+            }else{
+                expression.setText(temp.concat(number.getText()));
+                this.expStack.add(number.getValue());
+            }
         }
     }
 
@@ -171,7 +187,7 @@ public class CalculatorController {
                 } else {
                     String piv = "x"+"(";
                     expression.setText(temp.concat(piv));
-                    this.expStack.addLast('x');
+                    this.expStack.addLast('*');
                     this.expStack.addLast(('('));
                     brackets.increaseOpened();
                 }
@@ -184,7 +200,7 @@ public class CalculatorController {
                     String piv = "x"+"(";
                     expression.setText(temp.concat(piv));
                     brackets.increaseOpened();
-                    this.expStack.addLast(('x'));
+                    this.expStack.addLast(('*'));
                     this.expStack.addLast((')'));
                 }
             }
@@ -200,14 +216,13 @@ public class CalculatorController {
 
 
     private void plusMinusHandler(Operator value) {
-        String temp = expression.getText();
-
         if (isFirstOrEmpty()) {
             expression.setText(value.getText());
             result.setText("");
             this.firstAccess = false;
         } else {
             Character checkChar = this.expStack.getLast();
+            String temp = expression.getText();
             if (checkChar.toString().equals(".")) {
                 expression.setText(temp.concat("0".concat(value.getText())));
                 this.expStack.addLast('0');
@@ -219,6 +234,8 @@ public class CalculatorController {
                 this.expStack.addLast('(');
                 this.expStack.addLast((value.getValue()));
                 this.dotClicked = false;
+            } else if (checkChar.equals(PLUS.getValue()) || checkChar.equals(MINUS.getValue())){
+                //doNothing
             } else {
                 expression.setText(temp.concat(value.getText()));
                 this.expStack.addLast(value.getValue());
@@ -281,11 +298,11 @@ public class CalculatorController {
         }
     }
 
-        private boolean isFirstOrEmpty(){
-            if (firstAccess || (expression.getText().isEmpty())) {
-                return true;
-            }else return false;
-        }
+    private boolean isFirstOrEmpty(){
+        if (firstAccess || (expression.getText().isEmpty())) {
+            return true;
+        }else return false;
+    }
 }
 
 

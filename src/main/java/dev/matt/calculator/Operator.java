@@ -3,8 +3,8 @@ package dev.matt.calculator;
 enum Operator {
     PLUS('+', 0),
     MINUS('-', 0),
-    MULT('x', 1),
-    DIV('÷', 1),
+    MULT('*', 1),
+    DIV('/', 1),
     PERCENT('%', 1);
 
 
